@@ -9,19 +9,37 @@
 #import "ViewController.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *textUserName;
+@property (weak, nonatomic) IBOutlet UIButton *buttonSend;
+@property (nonatomic) MessageHandler *messageHandler;
 
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+
+-(void)viewDidLoad{
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    _textUserName.delegate=self;
+}
+- (IBAction)buttonSend:(id)sender {
+    
+    NSString *userName= self.textUserName.text;
+    _messageHandler= [[MessageHandler alloc] init: userName];
+    
+    if(_messageHandler.isConnected){
+        [self performSegueWithIdentifier:@"CallSegue" sender:self];
+    }else{
+        NSLog(@"Error al conectar");
+    }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
 }
+
+
+
 
 @end

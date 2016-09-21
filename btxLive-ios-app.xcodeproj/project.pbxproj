@@ -13,9 +13,16 @@
 		C458B88C1D7E34860074BADF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C458B88A1D7E34860074BADF /* Main.storyboard */; };
 		C458B88E1D7E34860074BADF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C458B88D1D7E34860074BADF /* Assets.xcassets */; };
 		C458B8911D7E34860074BADF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C458B88F1D7E34860074BADF /* LaunchScreen.storyboard */; };
+		C45D7FF91D934CDF00B70D9E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C45D7FF81D934CDF00B70D9E /* .gitignore */; };
+		C45EF67A1D8CB67200372C8E /* CallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C45EF6791D8CB67200372C8E /* CallViewController.m */; };
+		C45EF67D1D8F53BA00372C8E /* Peer.m in Sources */ = {isa = PBXBuildFile; fileRef = C45EF67C1D8F53B800372C8E /* Peer.m */; };
+		C47D73B51D8C9E8E00D1C3E5 /* MessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D73B41D8C9E8E00D1C3E5 /* MessageHandler.m */; };
+		EB4FF7B0E70ABB6770E23110 /* libPods-btxLive-ios-app.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A707EB3B89D4D9CF6E699B95 /* libPods-btxLive-ios-app.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		765447C872157333F941F435 /* Pods-btxLive-ios-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-btxLive-ios-app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-btxLive-ios-app/Pods-btxLive-ios-app.debug.xcconfig"; sourceTree = "<group>"; };
+		A707EB3B89D4D9CF6E699B95 /* libPods-btxLive-ios-app.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-btxLive-ios-app.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C458B87E1D7E34860074BADF /* btxLive-ios-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "btxLive-ios-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C458B8821D7E34860074BADF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C458B8841D7E34860074BADF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -26,6 +33,14 @@
 		C458B88D1D7E34860074BADF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C458B8901D7E34860074BADF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C458B8921D7E34860074BADF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C45D7FF81D934CDF00B70D9E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		C45EF6781D8CB67200372C8E /* CallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallViewController.h; sourceTree = "<group>"; };
+		C45EF6791D8CB67200372C8E /* CallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallViewController.m; sourceTree = "<group>"; };
+		C45EF67B1D8F53B800372C8E /* Peer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Peer.h; sourceTree = "<group>"; };
+		C45EF67C1D8F53B800372C8E /* Peer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Peer.m; sourceTree = "<group>"; };
+		C47D73B31D8C9E8E00D1C3E5 /* MessageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageHandler.h; sourceTree = "<group>"; };
+		C47D73B41D8C9E8E00D1C3E5 /* MessageHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageHandler.m; sourceTree = "<group>"; };
+		DB967D18A53265BE856A1D04 /* Pods-btxLive-ios-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-btxLive-ios-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-btxLive-ios-app/Pods-btxLive-ios-app.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +48,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB4FF7B0E70ABB6770E23110 /* libPods-btxLive-ios-app.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		59AA941F52BAC240E07A6FA8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				765447C872157333F941F435 /* Pods-btxLive-ios-app.debug.xcconfig */,
+				DB967D18A53265BE856A1D04 /* Pods-btxLive-ios-app.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		96A03F1174E99E32005950A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A707EB3B89D4D9CF6E699B95 /* libPods-btxLive-ios-app.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C458B8751D7E34860074BADF = {
 			isa = PBXGroup;
 			children = (
+				C45D7FF81D934CDF00B70D9E /* .gitignore */,
 				C458B8801D7E34860074BADF /* btxLive-ios-app */,
 				C458B87F1D7E34860074BADF /* Products */,
+				59AA941F52BAC240E07A6FA8 /* Pods */,
+				96A03F1174E99E32005950A1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +103,12 @@
 				C458B88F1D7E34860074BADF /* LaunchScreen.storyboard */,
 				C458B8921D7E34860074BADF /* Info.plist */,
 				C458B8811D7E34860074BADF /* Supporting Files */,
+				C47D73B31D8C9E8E00D1C3E5 /* MessageHandler.h */,
+				C47D73B41D8C9E8E00D1C3E5 /* MessageHandler.m */,
+				C45EF6781D8CB67200372C8E /* CallViewController.h */,
+				C45EF6791D8CB67200372C8E /* CallViewController.m */,
+				C45EF67B1D8F53B800372C8E /* Peer.h */,
+				C45EF67C1D8F53B800372C8E /* Peer.m */,
 			);
 			path = "btxLive-ios-app";
 			sourceTree = "<group>";
@@ -86,9 +128,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C458B8951D7E34860074BADF /* Build configuration list for PBXNativeTarget "btxLive-ios-app" */;
 			buildPhases = (
+				770F62F38BC599F2BDD07212 /* [CP] Check Pods Manifest.lock */,
 				C458B87A1D7E34860074BADF /* Sources */,
 				C458B87B1D7E34860074BADF /* Frameworks */,
 				C458B87C1D7E34860074BADF /* Resources */,
+				ABAFE6BA67B59AB759C6C1BA /* [CP] Embed Pods Frameworks */,
+				71F91630D29DF7475D62B0B4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -105,11 +150,12 @@
 		C458B8761D7E34860074BADF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Sandcode;
 				TargetAttributes = {
 					C458B87D1D7E34860074BADF = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 569NDT2TU5;
 					};
 				};
 			};
@@ -136,6 +182,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C45D7FF91D934CDF00B70D9E /* .gitignore in Resources */,
 				C458B8911D7E34860074BADF /* LaunchScreen.storyboard in Resources */,
 				C458B88E1D7E34860074BADF /* Assets.xcassets in Resources */,
 				C458B88C1D7E34860074BADF /* Main.storyboard in Resources */,
@@ -144,14 +191,65 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		71F91630D29DF7475D62B0B4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-btxLive-ios-app/Pods-btxLive-ios-app-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		770F62F38BC599F2BDD07212 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		ABAFE6BA67B59AB759C6C1BA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-btxLive-ios-app/Pods-btxLive-ios-app-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C458B87A1D7E34860074BADF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C45EF67A1D8CB67200372C8E /* CallViewController.m in Sources */,
 				C458B8891D7E34860074BADF /* ViewController.m in Sources */,
 				C458B8861D7E34860074BADF /* AppDelegate.m in Sources */,
 				C458B8831D7E34860074BADF /* main.m in Sources */,
+				C47D73B51D8C9E8E00D1C3E5 /* MessageHandler.m in Sources */,
+				C45EF67D1D8F53BA00372C8E /* Peer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,8 +289,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -235,8 +335,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -261,23 +363,35 @@
 		};
 		C458B8961D7E34860074BADF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 765447C872157333F941F435 /* Pods-btxLive-ios-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "btxLive-ios-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sandcode.btxLive-ios-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sandcode.btxLive-ios-app-beta";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		C458B8971D7E34860074BADF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DB967D18A53265BE856A1D04 /* Pods-btxLive-ios-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "btxLive-ios-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sandcode.btxLive-ios-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sandcode.btxLive-ios-app-beta";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -300,6 +414,7 @@
 				C458B8971D7E34860074BADF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
