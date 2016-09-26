@@ -70,19 +70,18 @@
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
     
     NSString *messageString = message;
+    
+    
+    
     NSData *messageData = [messageString dataUsingEncoding:NSUTF8StringEncoding];
     id jsonObject = [NSJSONSerialization JSONObjectWithData:messageData
                                                     options:0
                                                       error:nil];
-    NSString *calis=[jsonObject objectForKey:@"type"];
+    NSString *JSONobject=[jsonObject objectForKey:@"type"];
    
     bool success=[jsonObject objectForKey:@"success"];
     
-    /*NSInteger jeje=0;
-     [(entradas compare:(NSString *)calis];*/
-    
-    
-    switch([[_cases objectForKey:calis] intValue]) {
+    switch([[_cases objectForKey:JSONobject] intValue]) {
         case login:
             
             if(success){
@@ -94,6 +93,13 @@
             break;
         case offer:
             NSLog(@"on offer");
+            
+/*sdp = new SessionDescription(SessionDescription.Type.fromCanonicalForm("OFFER"),
+                                         message.getJSONObject("offer").getString("sdp")
+                                         );
+            
+                        */
+            
             
             break;
         case answer:
@@ -113,14 +119,17 @@
     
 }
 
--(void) setCameraLocal{
+
+//Create Answer for offer
+-(void) onOffer{
     
     
     
     
-    
-    
-    
+}
+
+
+-(void) localCamera{
     
     
     

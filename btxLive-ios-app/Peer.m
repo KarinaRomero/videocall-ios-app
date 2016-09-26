@@ -23,7 +23,7 @@
  */
 @synthesize peerConnection = _peerConnection;
 
-- (id)initWhitNameAndEndPoint:(NSString*)userName ep:(int) endPoint  arrayIceServers:(NSMutableArray*) iceServers factory: (RTCPeerConnectionFactory*)factory constraints:(RTCMediaConstraints*)constraints localStream:(RTCMediaStream*)localStream {
+/*- (id)initWhitNameAndEndPoint:(NSString*)userName ep:(int) endPoint  arrayIceServers:(NSMutableArray*) iceServers factory: (RTCPeerConnectionFactory*)factory constraints:(RTCMediaConstraints*)constraints localStream:(RTCMediaStream*)localStream {
     
     _iceServers=iceServers;
     _constraints=constraints;
@@ -35,11 +35,39 @@
     _userName=userName;
     _endPoint=endPoint;
     _localStream = localStream;
-    
-    
     return self;
     
 }
+*/
+
+-(void)setCamera{
+    
+    for (AVCaptureDevice *captureDevice in [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo] ) {
+        if (captureDevice.position == AVCaptureDevicePositionFront) {
+            _device = captureDevice;
+            
+            break;
+        }
+    }
+    
+    if (_device) {
+        
+        _videoCapturer = [RTCVideoCapturer capturerWithDeviceName:_device.localizedName];
+        
+        _videoSource = [_factory videoSourceWithCapturer: _videoCapturer constraints:nil];
+        
+        _videoTrack = [_factory videoTrackWithID:@"ARDAMSv0" source:_videoSource];
+        [_localStream addVideoTrack:_videoTrack];
+        
+        _audioTrack = [_factory audioTrackWithID:@"ARDAMSa0"];
+        
+        [_localStream addAudioTrack:_audioTrack];
+        
+    }
+    
+    
+}
+
 
 
 // Called when creating a session.

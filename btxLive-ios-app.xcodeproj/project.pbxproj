@@ -16,6 +16,7 @@
 		C45D7FF91D934CDF00B70D9E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C45D7FF81D934CDF00B70D9E /* .gitignore */; };
 		C45EF67A1D8CB67200372C8E /* CallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C45EF6791D8CB67200372C8E /* CallViewController.m */; };
 		C45EF67D1D8F53BA00372C8E /* Peer.m in Sources */ = {isa = PBXBuildFile; fileRef = C45EF67C1D8F53B800372C8E /* Peer.m */; };
+		C462C7251D99DB1F0036ABD1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C462C7241D99DB1F0036ABD1 /* AVFoundation.framework */; };
 		C47D73B51D8C9E8E00D1C3E5 /* MessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D73B41D8C9E8E00D1C3E5 /* MessageHandler.m */; };
 		EB4FF7B0E70ABB6770E23110 /* libPods-btxLive-ios-app.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A707EB3B89D4D9CF6E699B95 /* libPods-btxLive-ios-app.a */; };
 /* End PBXBuildFile section */
@@ -38,6 +39,7 @@
 		C45EF6791D8CB67200372C8E /* CallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallViewController.m; sourceTree = "<group>"; };
 		C45EF67B1D8F53B800372C8E /* Peer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Peer.h; sourceTree = "<group>"; };
 		C45EF67C1D8F53B800372C8E /* Peer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Peer.m; sourceTree = "<group>"; };
+		C462C7241D99DB1F0036ABD1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C47D73B31D8C9E8E00D1C3E5 /* MessageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageHandler.h; sourceTree = "<group>"; };
 		C47D73B41D8C9E8E00D1C3E5 /* MessageHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageHandler.m; sourceTree = "<group>"; };
 		DB967D18A53265BE856A1D04 /* Pods-btxLive-ios-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-btxLive-ios-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-btxLive-ios-app/Pods-btxLive-ios-app.release.xcconfig"; sourceTree = "<group>"; };
@@ -48,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C462C7251D99DB1F0036ABD1 /* AVFoundation.framework in Frameworks */,
 				EB4FF7B0E70ABB6770E23110 /* libPods-btxLive-ios-app.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -67,6 +70,7 @@
 		96A03F1174E99E32005950A1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C462C7241D99DB1F0036ABD1 /* AVFoundation.framework */,
 				A707EB3B89D4D9CF6E699B95 /* libPods-btxLive-ios-app.a */,
 			);
 			name = Frameworks;

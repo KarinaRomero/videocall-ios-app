@@ -10,16 +10,32 @@
 #import <libjingle_peerconnection/RTCPeerConnectionDelegate.h>
 #import <libjingle_peerconnection/RTCSessionDescriptionDelegate.h>
 #import <libjingle_peerconnection/RTCPeerConnectionFactory.h>
+#import <AVFoundation/AVFoundation.h>
+#import <libjingle_peerconnection/RTCVideoCapturer.h>
+#import <libjingle_peerconnection/RTCVideoTrack.h>
+#import <libjingle_peerconnection/RTCAudioTrack.h>
+#import <libjingle_peerconnection/RTCVideoSource.h>
+#import <libjingle_peerconnection/RTCMediaStream.h>
+
 
 @interface Peer : NSObject <RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate>
 
 @property (nonatomic, strong) RTCPeerConnection* peerConnection;
+@property (nonatomic) NSMutableArray* peersConnections;
 @property (nonatomic) NSString* userName;
 @property (nonatomic) int endPoint;
 @property (nonatomic, strong) RTCPeerConnectionFactory *factory;
 @property (nonatomic) NSMutableArray *iceServers;
 @property (nonatomic) RTCMediaConstraints *constraints;
 @property (nonatomic) RTCMediaStream *localStream;
+@property (nonatomic) NSArray* peers;
+@property (nonatomic) AVCaptureDevice* device;
+@property (nonatomic) RTCVideoSource *videoSource;
+@property (nonatomic) RTCVideoCapturer *videoCapturer;
+@property (nonatomic) RTCVideoTrack *videoTrack;
+@property (nonatomic) RTCAudioTrack *audioTrack;
+
+
 
 // Called when creating a session.
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
@@ -71,13 +87,13 @@ didSetSessionDescriptionWithError:(NSError *)error;
     pc.addStream(localMS); //, new MediaConstraints()
     mListener.onStatusChanged("CONNECTING");
 }
-*/
+
 
 - (id)initWhitNameAndEndPoint:(NSString*)userName ep:(int) endPoint  arrayIceServers:(NSMutableArray*) iceServers factory: (RTCPeerConnectionFactory*)factory constraints:(RTCMediaConstraints*)constraints localStream:(RTCMediaStream*)localStream;
+*/
 
 
-
-
+-(void)setCamera;
 
 
 

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "SocketRocket.h"
+#import <libjingle_peerconnection/RTCSessionDescription.h>
+#import "Peer.h"
 
 @interface MessageHandler : NSObject  <SRWebSocketDelegate>
 @property (nonatomic) SRWebSocket* webSocket;
@@ -21,6 +23,9 @@ typedef enum {
 @property (nonatomic) NSMutableDictionary * cases;
 @property (nonatomic) NSString *userName;
 @property (nonatomic) bool isConnected;
+@property (nonatomic) RTCSessionDescription* sdpRemote;
+@property (nonatomic) Peer* peerRemote;
+
 
 -(id)init:(NSString*)name;
 @end
