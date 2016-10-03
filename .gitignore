@@ -27,3 +27,4 @@ xcuserdata/
 *.xcscmblueprint
 
 ./Pods
+./Pods/Pods.xcodeproj
