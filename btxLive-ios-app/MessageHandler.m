@@ -27,17 +27,44 @@
         _userName=name;
         [self connectWebSocket];
         
-
+        _iceServer=[[RTCICEServer alloc] initWithURI:[NSURL URLWithString:@"stun.l.google.com:19302"]
+                                            username:@""
+                                            password:@""];
+        
+        
+        _iceServers = [NSMutableArray array];
+        [_iceServers addObject:_iceServer];
+        
+        _factory= [[RTCPeerConnectionFactory alloc] init];
+        
+        
+        _mandatoryConstraints = @[
+                                  [[RTCPair alloc] initWithKey:@"maxWidth" value:@"640"],
+                                  [[RTCPair alloc] initWithKey:@"minWidth" value:@"640"],
+                                  [[RTCPair alloc] initWithKey:@"maxHeight" value:@"480"],
+                                  [[RTCPair alloc] initWithKey:@"minHeight" value:@"480"],
+                                  [[RTCPair alloc] initWithKey:@"maxFrameRate" value:@"30"],
+                                  [[RTCPair alloc] initWithKey:@"minFrameRate" value:@"5"],
+                                  [[RTCPair alloc] initWithKey:@"googLeakyBucket" value:@"true"]
+                                  ];
+        _constrains= [[RTCMediaConstraints alloc] initWithMandatoryConstraints:_mandatoryConstraints optionalConstraints:nil];
+        
+        /*RTCConfiguration *rtc = [[RTCConfiguration alloc]init];
+        [rtc setIceServers:_iceServers];*/
+        
+        _peerConnection = [_factory peerConnectionWithICEServers:_iceServers constraints:_constrains delegate:self];
+        
+        
     }
     return self;
     
-    }
+}
 
 - (void)connectWebSocket {
     _webSocket.delegate = nil;
     _webSocket = nil;
     
-    NSString *urlString = @"ws://172.20.10.6:8888";
+    NSString *urlString = @"ws://162.243.206.15:8888";
     SRWebSocket *newWebSocket = [[SRWebSocket alloc] initWithURL:[NSURL URLWithString:urlString]];
     newWebSocket.delegate = self;
     
@@ -78,7 +105,7 @@
                                                     options:0
                                                       error:nil];
     NSString *JSONobject=[jsonObject objectForKey:@"type"];
-   
+    
     bool success=[jsonObject objectForKey:@"success"];
     
     switch([[_cases objectForKey:JSONobject] intValue]) {
@@ -94,11 +121,17 @@
         case offer:
             NSLog(@"on offer");
             
-/*sdp = new SessionDescription(SessionDescription.Type.fromCanonicalForm("OFFER"),
-                                         message.getJSONObject("offer").getString("sdp")
-                                         );
+            NSLog(@"%@", [jsonObject objectForKey:@"offer"]);
             
-                        */
+            /*_peerConnection= [_factory peerConnectionWithConfiguration: nil constraints:_constrains delegate:self];*/
+            
+            _sdpRemote = [[RTCSessionDescription alloc] initWithType:@"offer" sdp:[jsonObject objectForKey:@"sdp"]];
+            
+            [self localCamera];
+            
+            [_peerConnection setRemoteDescriptionWithDelegate:self sessionDescription:_sdpRemote];
+             
+            [_peerConnection createAnswerWithDelegate:self constraints:_constrains];
             
             
             break;
@@ -120,30 +153,82 @@
 }
 
 
-//Create Answer for offer
--(void) onOffer{
-    
-    
-    
-    
-}
 
 
 -(void) localCamera{
+    for (AVCaptureDevice *captureDevice in [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo] ) {
+        if (captureDevice.position == AVCaptureDevicePositionFront) {
+            _device = captureDevice;
+            
+            break;
+        }
+    }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    if (_device) {
+        
+        _localStream = [_factory mediaStreamWithLabel:@"ARDAMS"];
+        
+        
+        _videoCapturer = [RTCVideoCapturer capturerWithDeviceName:_device.localizedName];
+        
+        _videoSource = [_factory videoSourceWithCapturer: _videoCapturer constraints:_constrains];
+        
+        _videoTrack = [_factory videoTrackWithID:@"ARDAMSv0" source:_videoSource];
+        [_localStream addVideoTrack:_videoTrack];
+        
+        _audioTrack = [_factory audioTrackWithID:@"ARDAMSa0"];
+        
+        [_localStream addAudioTrack:_audioTrack];
+        
+        
+    }
     
 }
 
 
 
+
+//----------------------------------------------------------------
+
+// Called when creating a session.
+- (void)peerConnection:(RTCPeerConnection *)peerConnection
+didCreateSessionDescription:(RTCSessionDescription *)sdp
+                 error:(NSError *)error{
+        [peerConnection setLocalDescriptionWithDelegate:self sessionDescription:sdp];
+}
+
+// Called when setting a local or remote description.
+- (void)peerConnection:(RTCPeerConnection *)peerConnection
+didSetSessionDescriptionWithError:(NSError *)error{}
+
+// Triggered when the SignalingState changed.
+- (void)peerConnection:(RTCPeerConnection *)peerConnection
+ signalingStateChanged:(RTCSignalingState)stateChanged{}
+
+// Triggered when media is received on a new stream from remote peer.
+- (void)peerConnection:(RTCPeerConnection *)peerConnection
+           addedStream:(RTCMediaStream *)stream{}
+
+// Triggered when a remote peer close a stream.
+- (void)peerConnection:(RTCPeerConnection *)peerConnection
+         removedStream:(RTCMediaStream *)stream{}
+
+// Triggered when renegotiation is needed, for example the ICE has restarted.
+- (void)peerConnectionOnRenegotiationNeeded:(RTCPeerConnection *)peerConnection{}
+
+// Called any time the ICEConnectionState changes.
+- (void)peerConnection:(RTCPeerConnection *)peerConnection
+  iceConnectionChanged:(RTCICEConnectionState)newState{}
+
+// Called any time the ICEGatheringState changes.
+- (void)peerConnection:(RTCPeerConnection *)peerConnection
+   iceGatheringChanged:(RTCICEGatheringState)newState{}
+
+// New Ice candidate have been found.
+- (void)peerConnection:(RTCPeerConnection *)peerConnection
+       gotICECandidate:(RTCICECandidate *)candidate{}
+
+// New data channel has been opened.
+- (void)peerConnection:(RTCPeerConnection*)peerConnection
+    didOpenDataChannel:(RTCDataChannel*)dataChannel{}
 @end

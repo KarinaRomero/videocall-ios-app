@@ -87,10 +87,10 @@ didSetSessionDescriptionWithError:(NSError *)error;
     pc.addStream(localMS); //, new MediaConstraints()
     mListener.onStatusChanged("CONNECTING");
 }
-
+*/
 
 - (id)initWhitNameAndEndPoint:(NSString*)userName ep:(int) endPoint  arrayIceServers:(NSMutableArray*) iceServers factory: (RTCPeerConnectionFactory*)factory constraints:(RTCMediaConstraints*)constraints localStream:(RTCMediaStream*)localStream;
-*/
+
 
 
 -(void)setCamera;
