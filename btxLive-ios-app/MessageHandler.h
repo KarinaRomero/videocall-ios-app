@@ -43,12 +43,13 @@ typedef enum {
 @property (nonatomic) NSString *userName;
 @property (nonatomic) bool isConnected;
 @property (nonatomic) RTCSessionDescription* sdpRemote;
+@property (nonatomic) RTCSessionDescription* sdpLocal;
+
 //@property (nonatomic) Peer* peerRemote;
 
 
 
--(id)init:(NSString*)name;
-
+-(id)init:(NSString*)userName;
 
 //-------------------------------------------------------------
 
@@ -70,6 +71,12 @@ typedef enum {
 
 @property (nonatomic) NSArray *mandatoryConstraints;
 @property (nonatomic) RTCMediaConstraints *constrains;
+@property (nonatomic) RTCMediaConstraints *offerConstraints;
+
+@property (nonatomic) NSDictionary *dictionarySendsSignaling;
+@property (nonatomic) NSDictionary *dictionaryPrepareSignaling;
+
+@property (nonatomic) NSString *callName;
 
 //-(void) onOffer: (RTCSessionDescription*)SDP;
 

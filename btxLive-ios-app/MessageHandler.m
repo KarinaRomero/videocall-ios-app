@@ -11,7 +11,7 @@
 @implementation MessageHandler
 
 
--(id)init:(NSString*)name{
+-(id)init:(NSString*)userName{
     self = [super init];
     if(self)
     {
@@ -24,7 +24,7 @@
             [_cases setObject:[NSNumber numberWithInt:candidate] forKey:@"candidate"];
             [_cases setObject:[NSNumber numberWithInt:leave] forKey:@"leave"];
         }
-        _userName=name;
+        _userName=userName;
         [self connectWebSocket];
         
         _iceServer=[[RTCICEServer alloc] initWithURI:[NSURL URLWithString:@"stun.l.google.com:19302"]
@@ -49,6 +49,12 @@
                                   ];
         _constrains= [[RTCMediaConstraints alloc] initWithMandatoryConstraints:_mandatoryConstraints optionalConstraints:nil];
         
+        _offerConstraints= [[RTCMediaConstraints alloc] initWithMandatoryConstraints:
+        @[
+          [[RTCPair alloc] initWithKey:@"OfferToReceiveAudio" value:@"true"],
+          [[RTCPair alloc] initWithKey:@"OfferToReceiveVideo" value:@"true"]
+          ]
+    optionalConstraints: nil];
         /*RTCConfiguration *rtc = [[RTCConfiguration alloc]init];
         [rtc setIceServers:_iceServers];*/
         
@@ -59,6 +65,8 @@
     return self;
     
 }
+
+
 
 - (void)connectWebSocket {
     _webSocket.delegate = nil;
@@ -83,6 +91,7 @@
     NSDictionary *formatoJson= [NSDictionary dictionaryWithObjectsAndKeys: @"login",@"type", _userName, @"name", nil];
     
     id jsonObject = [NSJSONSerialization dataWithJSONObject:formatoJson options:0 error:nil];
+    
     [_webSocket send:jsonObject];
 }
 
@@ -96,17 +105,21 @@
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
     
+   
     NSString *messageString = message;
     
+    NSData *messageData = [messageString dataUsingEncoding:NSUnicodeStringEncoding];
     
-    
-    NSData *messageData = [messageString dataUsingEncoding:NSUTF8StringEncoding];
     id jsonObject = [NSJSONSerialization JSONObjectWithData:messageData
                                                     options:0
                                                       error:nil];
     NSString *JSONobject=[jsonObject objectForKey:@"type"];
     
     bool success=[jsonObject objectForKey:@"success"];
+    
+    NSLog(@"%@", jsonObject);
+    
+    NSString *messageSDP;
     
     switch([[_cases objectForKey:JSONobject] intValue]) {
         case login:
@@ -119,19 +132,20 @@
             
             break;
         case offer:
-            NSLog(@"on offer");
+            NSLog(@"on offer--------->");
+
+            messageSDP = [[jsonObject objectForKey:@"offer"]valueForKey:@"sdp"];
             
-            NSLog(@"%@", [jsonObject objectForKey:@"offer"]);
+            NSLog(@"%@", messageSDP);
+
+            _sdpRemote = [[RTCSessionDescription alloc] initWithType:@"offer" sdp:messageSDP];
             
-            /*_peerConnection= [_factory peerConnectionWithConfiguration: nil constraints:_constrains delegate:self];*/
-            
-            _sdpRemote = [[RTCSessionDescription alloc] initWithType:@"offer" sdp:[jsonObject objectForKey:@"sdp"]];
             
             [self localCamera];
+
+            [_peerConnection addStream:_localStream];
             
             [_peerConnection setRemoteDescriptionWithDelegate:self sessionDescription:_sdpRemote];
-             
-            [_peerConnection createAnswerWithDelegate:self constraints:_constrains];
             
             
             break;
@@ -163,11 +177,11 @@
             break;
         }
     }
-    
     if (_device) {
         
         _localStream = [_factory mediaStreamWithLabel:@"ARDAMS"];
         
+        NSLog(@"On local");
         
         _videoCapturer = [RTCVideoCapturer capturerWithDeviceName:_device.localizedName];
         
@@ -179,14 +193,9 @@
         _audioTrack = [_factory audioTrackWithID:@"ARDAMSa0"];
         
         [_localStream addAudioTrack:_audioTrack];
-        
-        
     }
     
 }
-
-
-
 
 //----------------------------------------------------------------
 
@@ -194,7 +203,10 @@
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
 didCreateSessionDescription:(RTCSessionDescription *)sdp
                  error:(NSError *)error{
-        [peerConnection setLocalDescriptionWithDelegate:self sessionDescription:sdp];
+    RTCSessionDescription* sessionDescription = [[RTCSessionDescription alloc] initWithType:sdp.type sdp:sdp.description];
+    [peerConnection setLocalDescriptionWithDelegate:self sessionDescription:sessionDescription];
+    
+    NSLog(@"Pasando por aqui didCreateSessionDescription");
 }
 
 // Called when setting a local or remote description.
