@@ -121,6 +121,15 @@
     
     NSString *messageSDP;
     
+    NSDictionary *dictionarySdpAnswer;
+    NSDictionary *dictionarySendAnswer;
+    
+    NSData *dataSdpAnswer;
+    NSData *dataSendAnswer;
+    
+    id jsonSdpAnswer;
+    id jsonSendAnswer;
+    
     switch([[_cases objectForKey:JSONobject] intValue]) {
         case login:
             
@@ -133,20 +142,30 @@
             break;
         case offer:
             NSLog(@"on offer--------->");
+            
+            [self localCamera];
 
+            
             messageSDP = [[jsonObject objectForKey:@"offer"]valueForKey:@"sdp"];
             
             NSLog(@"%@", messageSDP);
 
             _sdpRemote = [[RTCSessionDescription alloc] initWithType:@"offer" sdp:messageSDP];
             
-            
-            [self localCamera];
-
-            [_peerConnection addStream:_localStream];
-            
             [_peerConnection setRemoteDescriptionWithDelegate:self sessionDescription:_sdpRemote];
             
+            [_peerConnection createAnswerWithDelegate:self constraints:_constrains];
+            
+             [_peerConnection addStream:_localStream];
+            
+            
+            dictionarySdpAnswer = [[NSDictionary alloc] initWithObjectsAndKeys:@"answer", @"type", _peerConnection.localDescription, @"sdp",  nil];
+            
+            dataSdpAnswer = [NSJSONSerialization dataWithJSONObject:dictionarySdpAnswer options:NSJSONWritingPrettyPrinted error:nil];
+            jsonSdpAnswer =[NSJSONSerialization JSONObjectWithData:dataSdpAnswer
+                                                           options:0
+                                                             error:nil];
+
             
             break;
         case answer:
@@ -188,11 +207,17 @@
         _videoSource = [_factory videoSourceWithCapturer: _videoCapturer constraints:_constrains];
         
         _videoTrack = [_factory videoTrackWithID:@"ARDAMSv0" source:_videoSource];
+        
         [_localStream addVideoTrack:_videoTrack];
         
         _audioTrack = [_factory audioTrackWithID:@"ARDAMSa0"];
         
         [_localStream addAudioTrack:_audioTrack];
+        
+        [_peerConnection addStream:_localStream];
+        
+        
+        NSLog(@"%@", _localStream.description);
     }
     
 }
@@ -203,15 +228,18 @@
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
 didCreateSessionDescription:(RTCSessionDescription *)sdp
                  error:(NSError *)error{
-    RTCSessionDescription* sessionDescription = [[RTCSessionDescription alloc] initWithType:sdp.type sdp:sdp.description];
-    [peerConnection setLocalDescriptionWithDelegate:self sessionDescription:sessionDescription];
-    
+    [peerConnection setLocalDescriptionWithDelegate:self sessionDescription:sdp];
     NSLog(@"Pasando por aqui didCreateSessionDescription");
 }
 
 // Called when setting a local or remote description.
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
-didSetSessionDescriptionWithError:(NSError *)error{}
+didSetSessionDescriptionWithError:(NSError *)error{
+    if (peerConnection.signalingState == RTCSignalingHaveRemoteOffer) {
+        // If we have a remote offer we should add it to the peer connection
+        [_peerConnection createAnswerWithDelegate:self constraints:_constrains];
+    }
+}
 
 // Triggered when the SignalingState changed.
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
@@ -238,7 +266,14 @@ didSetSessionDescriptionWithError:(NSError *)error{}
 
 // New Ice candidate have been found.
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
-       gotICECandidate:(RTCICECandidate *)candidate{}
+       gotICECandidate:(RTCICECandidate *)candidate{
+    
+    _candidate = [[RTCICECandidate alloc] initWithMid:candidate.sdpMid
+                                                index:candidate.sdpMLineIndex
+                                                  sdp:candidate.sdp];
+    [self.peerConnection addICECandidate:candidate];
+    
+}
 
 // New data channel has been opened.
 - (void)peerConnection:(RTCPeerConnection*)peerConnection

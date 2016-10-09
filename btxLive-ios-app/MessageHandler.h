@@ -78,6 +78,7 @@ typedef enum {
 
 @property (nonatomic) NSString *callName;
 
+@property (nonatomic) RTCICECandidate *candidate;
 //-(void) onOffer: (RTCSessionDescription*)SDP;
 
 
