@@ -26,6 +26,7 @@
 #import <libjingle_peerconnection/RTCVideoSource.h>
 #import <libjingle_peerconnection/RTCMediaStream.h>
 #import <libjingle_peerconnection/RTCPeerConnection.h>
+#import <libjingle_peerconnection/RTCPeerConnectionFactory.h>
 
 //#import "Peer.h"
 
@@ -78,7 +79,7 @@ typedef enum {
 
 @property (nonatomic) NSString *callName;
 
-@property (nonatomic) RTCICECandidate *candidate;
+@property (nonatomic) RTCICECandidate *candidatee;
 //-(void) onOffer: (RTCSessionDescription*)SDP;
 
 

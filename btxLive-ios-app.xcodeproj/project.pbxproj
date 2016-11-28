@@ -18,6 +18,8 @@
 		C45EF67D1D8F53BA00372C8E /* Peer.m in Sources */ = {isa = PBXBuildFile; fileRef = C45EF67C1D8F53B800372C8E /* Peer.m */; };
 		C462C7251D99DB1F0036ABD1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C462C7241D99DB1F0036ABD1 /* AVFoundation.framework */; };
 		C47D73B51D8C9E8E00D1C3E5 /* MessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D73B41D8C9E8E00D1C3E5 /* MessageHandler.m */; };
+		C4CE7B4A1DAAE84100B1B664 /* MessagesHandlerToSignaling.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CE7B491DAAE84000B1B664 /* MessagesHandlerToSignaling.m */; };
+		C4CE7B4D1DAAEEF600B1B664 /* PeerConnectionSession.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CE7B4C1DAAEEF600B1B664 /* PeerConnectionSession.m */; };
 		EB4FF7B0E70ABB6770E23110 /* libPods-btxLive-ios-app.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A707EB3B89D4D9CF6E699B95 /* libPods-btxLive-ios-app.a */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +44,10 @@
 		C462C7241D99DB1F0036ABD1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C47D73B31D8C9E8E00D1C3E5 /* MessageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageHandler.h; sourceTree = "<group>"; };
 		C47D73B41D8C9E8E00D1C3E5 /* MessageHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageHandler.m; sourceTree = "<group>"; };
+		C4CE7B481DAAE84000B1B664 /* MessagesHandlerToSignaling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesHandlerToSignaling.h; sourceTree = "<group>"; };
+		C4CE7B491DAAE84000B1B664 /* MessagesHandlerToSignaling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesHandlerToSignaling.m; sourceTree = "<group>"; };
+		C4CE7B4B1DAAEEF600B1B664 /* PeerConnectionSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeerConnectionSession.h; sourceTree = "<group>"; };
+		C4CE7B4C1DAAEEF600B1B664 /* PeerConnectionSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeerConnectionSession.m; sourceTree = "<group>"; };
 		DB967D18A53265BE856A1D04 /* Pods-btxLive-ios-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-btxLive-ios-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-btxLive-ios-app/Pods-btxLive-ios-app.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +115,10 @@
 				C458B8811D7E34860074BADF /* Supporting Files */,
 				C47D73B31D8C9E8E00D1C3E5 /* MessageHandler.h */,
 				C47D73B41D8C9E8E00D1C3E5 /* MessageHandler.m */,
+				C4CE7B4B1DAAEEF600B1B664 /* PeerConnectionSession.h */,
+				C4CE7B4C1DAAEEF600B1B664 /* PeerConnectionSession.m */,
+				C4CE7B481DAAE84000B1B664 /* MessagesHandlerToSignaling.h */,
+				C4CE7B491DAAE84000B1B664 /* MessagesHandlerToSignaling.m */,
 				C45EF6781D8CB67200372C8E /* CallViewController.h */,
 				C45EF6791D8CB67200372C8E /* CallViewController.m */,
 				C45EF67B1D8F53B800372C8E /* Peer.h */,
@@ -159,7 +169,7 @@
 				TargetAttributes = {
 					C458B87D1D7E34860074BADF = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 569NDT2TU5;
+						DevelopmentTeam = 3965RXBQT4;
 					};
 				};
 			};
@@ -249,6 +259,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C45EF67A1D8CB67200372C8E /* CallViewController.m in Sources */,
+				C4CE7B4A1DAAE84100B1B664 /* MessagesHandlerToSignaling.m in Sources */,
+				C4CE7B4D1DAAEEF600B1B664 /* PeerConnectionSession.m in Sources */,
 				C458B8891D7E34860074BADF /* ViewController.m in Sources */,
 				C458B8861D7E34860074BADF /* AppDelegate.m in Sources */,
 				C458B8831D7E34860074BADF /* main.m in Sources */,
@@ -372,6 +384,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3965RXBQT4;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "btxLive-ios-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -389,6 +402,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3965RXBQT4;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "btxLive-ios-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Zif-hC-vbG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Zif-hC-vbG">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -35,7 +38,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhW-7q-icO">
-                                <frame key="frameInset" minX="169" minY="218" width="36" height="4.01%"/>
+                                <rect key="frame" x="169" y="218" width="36" height="18"/>
                                 <autoresizingMask key="autoresizingMask" heightSizable="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Send"/>
                                 <connections>
@@ -43,7 +46,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y3M-YK-vJK">
-                                <frame key="frameInset" minX="92" minY="150" width="190" height="30"/>
+                                <rect key="frame" x="92" y="150" width="190" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -73,12 +76,50 @@
                     <view key="view" contentMode="scaleToFill" id="yPb-Mj-Z1j">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZBz-s8-IEQ" customClass="RTCEAGLVideoView">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wqy-p6-KyJ" customClass="RTCEAGLVideoView">
+                                        <rect key="frame" x="161" y="349" width="214" height="254"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="254" id="5Ig-6I-GTc"/>
+                                            <constraint firstAttribute="width" constant="214" id="Qd6-Ho-kfd"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Wqy-p6-KyJ" secondAttribute="trailing" id="H7u-fk-SJL"/>
+                                    <constraint firstAttribute="bottom" secondItem="Wqy-p6-KyJ" secondAttribute="bottom" id="OWM-0N-u48"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZBz-s8-IEQ" firstAttribute="top" secondItem="1IO-1w-vFZ" secondAttribute="bottom" id="7yW-el-slH"/>
+                            <constraint firstAttribute="trailing" secondItem="ZBz-s8-IEQ" secondAttribute="trailing" id="EtE-uw-Uqe"/>
+                            <constraint firstItem="ZBz-s8-IEQ" firstAttribute="leading" secondItem="yPb-Mj-Z1j" secondAttribute="leading" id="JgI-uz-Wpf"/>
+                            <constraint firstItem="fSz-rP-alP" firstAttribute="top" secondItem="ZBz-s8-IEQ" secondAttribute="bottom" id="pNS-3x-Uyr"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="localBottomViewConstraint" destination="OWM-0N-u48" id="eTN-UK-9Ms"/>
+                        <outlet property="localHeightViewConstraint" destination="5Ig-6I-GTc" id="c7s-T3-KaU"/>
+                        <outlet property="localRightViewConstraint" destination="H7u-fk-SJL" id="Vz8-FL-4kM"/>
+                        <outlet property="localView" destination="Wqy-p6-KyJ" id="1dc-Re-drr"/>
+                        <outlet property="localWidthViewConstraint" destination="Qd6-Ho-kfd" id="T5y-Ae-aRr"/>
+                        <outlet property="remoteBottomViewConstraint" destination="pNS-3x-Uyr" id="Zdc-Ox-LJP"/>
+                        <outlet property="remoteLeftViewConstraint" destination="JgI-uz-Wpf" id="GwD-Jx-Y8j"/>
+                        <outlet property="remoteRightViewConstraint" destination="EtE-uw-Uqe" id="LQn-c5-Mu9"/>
+                        <outlet property="remoteTopViewConstraint" destination="7yW-el-slH" id="7wr-5o-w8e"/>
+                        <outlet property="remoteView" destination="ZBz-s8-IEQ" id="hNl-yQ-tIP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hae-27-MCG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="838" y="306"/>
+            <point key="canvasLocation" x="837.60000000000002" y="305.39730134932535"/>
         </scene>
     </scenes>
 </document>

@@ -25,6 +25,7 @@
             [_cases setObject:[NSNumber numberWithInt:leave] forKey:@"leave"];
         }
         _userName=userName;
+        
         [self connectWebSocket];
         
         _iceServer=[[RTCICEServer alloc] initWithURI:[NSURL URLWithString:@"stun.l.google.com:19302"]
@@ -34,6 +35,8 @@
         
         _iceServers = [NSMutableArray array];
         [_iceServers addObject:_iceServer];
+        
+        [RTCPeerConnectionFactory initializeSSL];
         
         _factory= [[RTCPeerConnectionFactory alloc] init];
         
@@ -55,8 +58,6 @@
           [[RTCPair alloc] initWithKey:@"OfferToReceiveVideo" value:@"true"]
           ]
     optionalConstraints: nil];
-        /*RTCConfiguration *rtc = [[RTCConfiguration alloc]init];
-        [rtc setIceServers:_iceServers];*/
         
         _peerConnection = [_factory peerConnectionWithICEServers:_iceServers constraints:_constrains delegate:self];
         
@@ -144,7 +145,10 @@
             NSLog(@"on offer--------->");
             
             [self localCamera];
-
+            
+            NSLog(@"%@", _peerConnection.description);
+            
+            //[_peerConnection addStream:_localStream];
             
             messageSDP = [[jsonObject objectForKey:@"offer"]valueForKey:@"sdp"];
             
@@ -165,6 +169,14 @@
             jsonSdpAnswer =[NSJSONSerialization JSONObjectWithData:dataSdpAnswer
                                                            options:0
                                                              error:nil];
+            
+            dictionarySendAnswer = [[NSDictionary alloc] initWithObjectsAndKeys:@"answer", @"type", jsonSdpAnswer, @"answer",  _userName, @"name",nil];
+            
+            dataSendAnswer= [NSJSONSerialization dataWithJSONObject:dictionarySdpAnswer options:NSJSONWritingPrettyPrinted error:nil];
+            jsonSendAnswer =[NSJSONSerialization JSONObjectWithData:dataSdpAnswer
+                                                           options:0
+                                                             error:nil];
+
 
             
             break;
@@ -214,7 +226,7 @@
         
         [_localStream addAudioTrack:_audioTrack];
         
-        [_peerConnection addStream:_localStream];
+        
         
         
         NSLog(@"%@", _localStream.description);
@@ -268,7 +280,7 @@ didSetSessionDescriptionWithError:(NSError *)error{
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
        gotICECandidate:(RTCICECandidate *)candidate{
     
-    _candidate = [[RTCICECandidate alloc] initWithMid:candidate.sdpMid
+    _candidatee = [[RTCICECandidate alloc] initWithMid:candidate.sdpMid
                                                 index:candidate.sdpMLineIndex
                                                   sdp:candidate.sdp];
     [self.peerConnection addICECandidate:candidate];

@@ -7,11 +7,13 @@
 //
 
 #import "ViewController.h"
+#import "CallViewController.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *textUserName;
 @property (weak, nonatomic) IBOutlet UIButton *buttonSend;
-@property (nonatomic) MessageHandler *messageHandler;
+@property (nonatomic) MessagesHandlerToSignaling *messageHandlerToSignaling;
+@property (nonatomic) NSString *userName;
 
 @end
 
@@ -24,14 +26,9 @@
 }
 - (IBAction)buttonSend:(id)sender {
     
-    NSString *userName= self.textUserName.text;
-    _messageHandler= [[MessageHandler alloc] init: userName];
+    _userName= self.textUserName.text;
+    [self performSegueWithIdentifier:@"CallSegue" sender:self];
     
-    if(_messageHandler.isConnected){
-        [self performSegueWithIdentifier:@"CallSegue" sender:self];
-    }else{
-        NSLog(@"Error al conectar");
-    }
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -39,6 +36,14 @@
     return YES;
 }
 
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([[segue identifier] isEqualToString:@"CallSegue"]) {
+        CallViewController *callView = [segue destinationViewController];
+        
+        callView.myUserName = _userName;
+    }
+    
+}
 
 
 

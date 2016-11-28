@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MessageHandler.h"
+#import "MessagesHandlerToSignaling.h"
 //#import <AppRTC/ARDAppClient.h>
 
 @interface ViewController : UIViewController <UITextFieldDelegate>
