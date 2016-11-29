@@ -184,7 +184,6 @@
     NSString *messageSDP;
     NSString *messageCandidate;
     
-    RTCPeerConnection *pc;
     
  
     
@@ -214,10 +213,11 @@
             
             [self.peerConnections setObject:_peerRemote forKey:_yourName];
             
-            pc=[self.peerConnections valueForKey:_yourName];
-            NSLog(@"%@", pc.description);
             NSLog(@"%lu", (unsigned long)_peerConnections.count);
             
+            [_peerConnection setRemoteDescriptionWithDelegate:self sessionDescription:_sdpRemote];
+            
+            [_peerConnection createAnswerWithDelegate:self constraints:[self defaultOfferConstraints]];
             
             
             break;
@@ -227,8 +227,6 @@
         case candidate:
             NSLog(@"on candidate");
             
-            pc=[self getPeerConnectioFormName:_yourName];
-            NSLog(@"%@", pc.description);
             
             messageCandidate = [[jsonObject objectForKey:@"candidate"]valueForKey:@"candidate"];
             NSLog(@"%@", messageCandidate);
@@ -259,50 +257,16 @@
     return constraints;
 }
 
-
-- (NSString *)identifierForPeer:(RTCPeerConnection *)peer {
-    NSArray *keys = [self.peerConnections allKeysForObject:peer];
-    return (keys.count == 0) ? nil : keys[0];
-    
-}
-
--(RTCPeerConnection*)getPeerConnectioFormName:(NSString*)name{
-    RTCPeerConnection *peer= [self.peerConnections objectForKey:name];
-    
-    return peer;
-    
-}
-
-- (void)addPeerConnectionForID:(NSString *)identifier {
-    RTCPeerConnection *peer = [self.factory peerConnectionWithICEServers:_arrayIceServers constraints:_constraints delegate:self];
-    
-    [peer addStream:self.localMediaStream];
-    [self.peerConnections setObject:peer forKey:identifier];
-    
-    NSLog(@"ADDCONNECTION peer----------------");
-    RTCPeerConnection *imprimirP=[self.peerConnections valueForKey:identifier];
-    NSLog(@"%@", imprimirP.description);
-    
-    NSLog(@"PASSANDO POR ADDCONNECTION----------------");
-    NSLog(@"%@", identifier);
-}
-
-- (void)removePeerConnectionForID:(NSString *)identifier {
-    RTCPeerConnection* peer = self.peerConnections[identifier];
-    [self.peerConnections removeObjectForKey:identifier];
-    [peer close];
-}
-
-
-
-- (void)createOfferForPeerWithID:(NSString *)peerID {
-    RTCPeerConnection *peerConnection = [self.peerConnections objectForKey:peerID];
-    [peerConnection createOfferWithDelegate:self constraints:[self constraints]];
-}
-
-- (void)setRemoteDescription:(RTCSessionDescription *)remoteSDP forPeerWithID:(NSString *)peerID receiver:(BOOL)isReceiver {
-    RTCPeerConnection *peerConnection = [self.peerConnections objectForKey:peerID];
-    [peerConnection setRemoteDescriptionWithDelegate:self sessionDescription:remoteSDP];
+- (RTCMediaConstraints *)defaultOfferConstraints {
+    NSArray *mandatoryConstraints = @[
+                                      [[RTCPair alloc] initWithKey:@"OfferToReceiveAudio" value:@"true"],
+                                      [[RTCPair alloc] initWithKey:@"OfferToReceiveVideo" value:@"true"]
+                                      ];
+    RTCMediaConstraints* constraints =
+    [[RTCMediaConstraints alloc]
+     initWithMandatoryConstraints:mandatoryConstraints
+     optionalConstraints:nil];
+    return constraints;
 }
 
 
@@ -310,11 +274,28 @@
 - (void)peerConnection:(RTCPeerConnection *)peerConnection didCreateSessionDescription:(RTCSessionDescription *)sdp error:(NSError *)error {
     dispatch_async(dispatch_get_main_queue(), ^{
         
+        //NSLog(@"%@", sdp.description);
+        
         [_peerConnection setLocalDescriptionWithDelegate:self
                                       sessionDescription:sdp];
         
+        NSMutableDictionary *answerSDP = [NSMutableDictionary dictionary];
+        [answerSDP setObject: @"answer" forKey:@"type"];
+        [answerSDP setObject: sdp.description forKey:@"sdp"];
         
-        [self send:message];
+        
+        NSMutableDictionary *answerSend = [NSMutableDictionary dictionary];
+        [answerSend setObject: @"answer" forKey:@"type"];
+        [answerSend setObject: answerSDP forKey:@"answer"];
+        [answerSend setObject: _yourName forKey:@"name"];
+
+        
+        NSData *jsonAnswerSend = [NSJSONSerialization dataWithJSONObject:answerSend
+                                                                options:0 error:nil];
+        
+        NSString* newStr = [[NSString alloc] initWithData:jsonAnswerSend encoding:NSUTF8StringEncoding];
+        
+        [_webSocket send:newStr];
     });}
 
 - (void)peerConnection:(RTCPeerConnection *)peerConnection didSetSessionDescriptionWithError:(NSError *)error {
@@ -322,8 +303,10 @@
       
         // If we're answering and we've just set the remote offer we need to create
         // an answer and set the local description.
+        
+        // falta e metodo defaultAnswerConstraints
         if (peerConnection.signalingState == RTCSignalingHaveRemoteOffer) {
-            RTCMediaConstraints *constraints = [self defaultAnswerConstraints];
+            RTCMediaConstraints *constraints = [self defaultOfferConstraints];
             [_peerConnection createAnswerWithDelegate:self
                                           constraints:constraints];
             
@@ -361,7 +344,9 @@
          removedStream:(RTCMediaStream *)stream{}
 
 // Triggered when renegotiation is needed, for example the ICE has restarted.
-- (void)peerConnectionOnRenegotiationNeeded:(RTCPeerConnection *)peerConnection{NSLog(@"Pasando peerConnectionOnRenegotiationNeeded");}
+- (void)peerConnectionOnRenegotiationNeeded:(RTCPeerConnection *)peerConnection{NSLog(@"Pasando peerConnectionOnRenegotiationNeeded");
+    NSLog( @"%@", _peerConnection);
+}
 
 // Called any time the ICEConnectionState changes.
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
