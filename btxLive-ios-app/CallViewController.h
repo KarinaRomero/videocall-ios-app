@@ -43,10 +43,16 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *localRightViewConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *localBottomViewConstraint;
 
+@property (strong, nonatomic) MessagesHandlerToSignaling* messagesToSignaling;
+@property (strong, nonatomic) IBOutlet RTCEAGLVideoView *remoteView;
+@property (strong, nonatomic) IBOutlet RTCEAGLVideoView *localView;
+@property (assign, nonatomic) CGSize localVideoSize;
+@property (assign, nonatomic) CGSize remoteVideoSize;
 
 @property (nonatomic) NSString *myUserName;
 
 @property (strong, nonatomic) RTCVideoTrack *localVideoTrack;
 @property (strong, nonatomic) RTCVideoTrack *remoteVideoTrack;
+@property (strong, nonatomic) AVCaptureVideoPreviewLayer *previewLayer;
 
 @end

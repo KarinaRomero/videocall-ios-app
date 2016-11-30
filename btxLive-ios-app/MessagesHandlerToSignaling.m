@@ -47,13 +47,31 @@
         
         _peerConnections = [[NSMutableDictionary alloc]init];
         
-        
-        
+        /*[[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(orientationChanged:)
+                                                     name:@"UIDeviceOrientationDidChangeNotification"
+                                                   object:nil];*/
     }
     return self;
     
 }
-
+/*
+- (void)orientationChanged:(NSNotification *)notification {
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    if (UIDeviceOrientationIsLandscape(orientation) || UIDeviceOrientationIsPortrait(orientation)) {
+        //Remove current video track
+        RTCMediaStream *localStream = _peerConnection.localStreams[0];
+        [localStream removeVideoTrack:localStream.videoTracks[0]];
+        
+        RTCVideoTrack *localVideoTrack = [self createLocalVideoTrack];
+        if (localVideoTrack) {
+            [localStream addVideoTrack:localVideoTrack];
+            [_delegate didReceiveLocalVideoTrack:localVideoTrack];
+        }
+        [_peerConnection removeStream:localStream];
+        [_peerConnection addStream:localStream];
+    }
+}*/
 
 - (void)connectWebSocket {
     _webSocket.delegate = nil;
@@ -217,7 +235,7 @@
             
             [_peerConnection setRemoteDescriptionWithDelegate:self sessionDescription:_sdpRemote];
             
-            [_peerConnection createAnswerWithDelegate:self constraints:[self defaultOfferConstraints]];
+            
             
             
             break;
@@ -274,10 +292,11 @@
 - (void)peerConnection:(RTCPeerConnection *)peerConnection didCreateSessionDescription:(RTCSessionDescription *)sdp error:(NSError *)error {
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        //NSLog(@"%@", sdp.description);
+        NSLog(@"didCreateSessionDescription...........");
         
         [_peerConnection setLocalDescriptionWithDelegate:self
                                       sessionDescription:sdp];
+        //[_peerConnection createAnswerWithDelegate:self constraints:[self defaultOfferConstraints]];
         
         NSMutableDictionary *answerSDP = [NSMutableDictionary dictionary];
         [answerSDP setObject: @"answer" forKey:@"type"];
@@ -304,7 +323,7 @@
         // If we're answering and we've just set the remote offer we need to create
         // an answer and set the local description.
         
-        // falta e metodo defaultAnswerConstraints
+        
         if (peerConnection.signalingState == RTCSignalingHaveRemoteOffer) {
             RTCMediaConstraints *constraints = [self defaultOfferConstraints];
             [_peerConnection createAnswerWithDelegate:self
@@ -358,7 +377,31 @@
 
 // New Ice candidate have been found.
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
-       gotICECandidate:(RTCICECandidate *)candidate{}
+       gotICECandidate:(RTCICECandidate *)candidate{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        NSString *candidateString = [NSString stringWithFormat:@"%@%@%ld", candidate.sdp, candidate.sdpMid, (long)candidate.sdpMLineIndex];
+        
+        NSMutableDictionary *candidateSend = [NSMutableDictionary dictionary];
+        [candidateSend setObject: candidateString forKey:@"candidate"];
+        
+        
+        NSMutableDictionary *candidateSending = [NSMutableDictionary dictionary];
+        [candidateSending setObject: @"candidate" forKey:@"type"];
+        [candidateSending setObject: candidateSend forKey:@"candidate"];
+        [candidateSending setObject: _yourName forKey:@"name"];
+        
+        
+        NSData *jsonCandidateSend = [NSJSONSerialization dataWithJSONObject:candidateSending
+                                                                 options:0 error:nil];
+        
+        NSString* stringCandidateSend = [[NSString alloc] initWithData:jsonCandidateSend encoding:NSUTF8StringEncoding];
+        
+        [_webSocket send:stringCandidateSend];
+        
+    });
+
+}
 
 // New data channel has been opened.
 - (void)peerConnection:(RTCPeerConnection*)peerConnection

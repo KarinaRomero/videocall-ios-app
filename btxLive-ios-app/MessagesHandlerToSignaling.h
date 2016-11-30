@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "RTCAVFoundationVideoSource.h"
 #import "SocketRocket.h"
 #import "PeerConnectionSession.h"

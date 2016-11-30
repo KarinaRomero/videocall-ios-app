@@ -34,15 +34,6 @@
 
 @interface CallViewController ()
 
-
-@property (strong, nonatomic) MessagesHandlerToSignaling* messagesToSignaling;
-@property (strong, nonatomic) IBOutlet RTCEAGLVideoView *remoteView;
-@property (strong, nonatomic) IBOutlet RTCEAGLVideoView *localView;
-@property (assign, nonatomic) CGSize localVideoSize;
-@property (assign, nonatomic) CGSize remoteVideoSize;
-
-@property (strong, nonatomic) AVCaptureVideoPreviewLayer *previewLayer;
-
 @end
 
 @implementation CallViewController
