@@ -222,6 +222,8 @@
             
             _sdpRemote = [[RTCSessionDescription alloc] initWithType:@"offer" sdp:messageSDP];
             
+            [_peerConnection setRemoteDescriptionWithDelegate:self sessionDescription:_sdpRemote];
+            
             _yourName = [jsonObject objectForKey:@"name"];
             
             _peerRemote=[_factory peerConnectionWithICEServers:_arrayIceServers constraints:_constraints delegate:self];
@@ -233,7 +235,7 @@
             
             NSLog(@"%lu", (unsigned long)_peerConnections.count);
             
-            [_peerConnection setRemoteDescriptionWithDelegate:self sessionDescription:_sdpRemote];
+            
             
             
             
@@ -245,15 +247,17 @@
         case candidate:
             NSLog(@"on candidate");
             
+            if(_peerConnection.isAccessibilityElement){
+                messageCandidate = [[jsonObject objectForKey:@"candidate"]valueForKey:@"candidate"];
+                NSLog(@"%@", messageCandidate);
+                
+                _peerCandidate = [[RTCICECandidate alloc] initWithMid:[[jsonObject objectForKey:@"candidate"]valueForKey:@"sdpMid"]
+                                                                index: [[[jsonObject objectForKey:@"candidate"]valueForKey:@"sdpMLineIndex"] integerValue]
+                                                                  sdp:[[jsonObject objectForKey:@"candidate"]valueForKey:@"candidate"]];
+                
+                [self.peerConnection addICECandidate:_peerCandidate];
+            }
             
-            messageCandidate = [[jsonObject objectForKey:@"candidate"]valueForKey:@"candidate"];
-            NSLog(@"%@", messageCandidate);
-
-            _peerCandidate = [[RTCICECandidate alloc] initWithMid:[[jsonObject objectForKey:@"candidate"]valueForKey:@"sdpMid"]
-                                                        index: [[[jsonObject objectForKey:@"candidate"]valueForKey:@"sdpMLineIndex"] integerValue]
-                                                          sdp:[[jsonObject objectForKey:@"candidate"]valueForKey:@"candidate"]];
-            
-            [self.peerConnection addICECandidate:_peerCandidate];
             
             break;
         case leave:
@@ -322,9 +326,26 @@
       
         // If we're answering and we've just set the remote offer we need to create
         // an answer and set the local description.
+        NSLog(@"signalingState");
+        NSLog(@"%u", _peerConnection.signalingState);
         
+        NSLog(@"RTCSignalingHaveRemoteOffer");
+        NSLog(@"%d", RTCSignalingHaveRemoteOffer);
+        
+        NSLog(@"RTCSignalingHaveLocalOffer");
+        NSLog(@"%d", RTCSignalingHaveLocalOffer);
+        
+        NSLog(@"RTCSignalingHaveRemotePrAnswer");
+        NSLog(@"%d", RTCSignalingHaveRemotePrAnswer);
+        
+        NSLog(@"RTCSignalingHaveLocalPrAnswer");
+        NSLog(@"%d", RTCSignalingHaveLocalPrAnswer);
+        
+        NSLog(@"RTCSignalingStable");
+        NSLog(@"%d", RTCSignalingStable);
         
         if (peerConnection.signalingState == RTCSignalingHaveRemoteOffer) {
+            
             RTCMediaConstraints *constraints = [self defaultOfferConstraints];
             [_peerConnection createAnswerWithDelegate:self
                                           constraints:constraints];
