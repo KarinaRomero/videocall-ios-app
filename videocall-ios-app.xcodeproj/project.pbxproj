@@ -1,0 +1,451 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C458B8831D7E34860074BADF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C458B8821D7E34860074BADF /* main.m */; };
+		C458B8861D7E34860074BADF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C458B8851D7E34860074BADF /* AppDelegate.m */; };
+		C458B8891D7E34860074BADF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C458B8881D7E34860074BADF /* ViewController.m */; };
+		C458B88C1D7E34860074BADF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C458B88A1D7E34860074BADF /* Main.storyboard */; };
+		C458B88E1D7E34860074BADF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C458B88D1D7E34860074BADF /* Assets.xcassets */; };
+		C458B8911D7E34860074BADF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C458B88F1D7E34860074BADF /* LaunchScreen.storyboard */; };
+		C45D7FF91D934CDF00B70D9E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C45D7FF81D934CDF00B70D9E /* .gitignore */; };
+		C45EF67A1D8CB67200372C8E /* CallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C45EF6791D8CB67200372C8E /* CallViewController.m */; };
+		C45EF67D1D8F53BA00372C8E /* Peer.m in Sources */ = {isa = PBXBuildFile; fileRef = C45EF67C1D8F53B800372C8E /* Peer.m */; };
+		C462C7251D99DB1F0036ABD1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C462C7241D99DB1F0036ABD1 /* AVFoundation.framework */; };
+		C47D73B51D8C9E8E00D1C3E5 /* MessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D73B41D8C9E8E00D1C3E5 /* MessageHandler.m */; };
+		C47FC1AF1F212C8000828C9C /* libPods-videocall-ios-app.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C47FC1AE1F212C8000828C9C /* libPods-videocall-ios-app.a */; };
+		C4CE7B4A1DAAE84100B1B664 /* MessagesHandlerToSignaling.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CE7B491DAAE84000B1B664 /* MessagesHandlerToSignaling.m */; };
+		C4CE7B4D1DAAEEF600B1B664 /* PeerConnectionSession.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CE7B4C1DAAEEF600B1B664 /* PeerConnectionSession.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		765447C872157333F941F435 /* Pods-btxLive-ios-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-btxLive-ios-app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-btxLive-ios-app/Pods-btxLive-ios-app.debug.xcconfig"; sourceTree = "<group>"; };
+		A707EB3B89D4D9CF6E699B95 /* libPods-btxLive-ios-app.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-btxLive-ios-app.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C458B87E1D7E34860074BADF /* videocall-ios-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "videocall-ios-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C458B8821D7E34860074BADF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C458B8841D7E34860074BADF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		C458B8851D7E34860074BADF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C458B8871D7E34860074BADF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		C458B8881D7E34860074BADF /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		C458B88B1D7E34860074BADF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C458B88D1D7E34860074BADF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C458B8901D7E34860074BADF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C458B8921D7E34860074BADF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C45D7FF81D934CDF00B70D9E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		C45EF6781D8CB67200372C8E /* CallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallViewController.h; sourceTree = "<group>"; };
+		C45EF6791D8CB67200372C8E /* CallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallViewController.m; sourceTree = "<group>"; };
+		C45EF67B1D8F53B800372C8E /* Peer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Peer.h; sourceTree = "<group>"; };
+		C45EF67C1D8F53B800372C8E /* Peer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Peer.m; sourceTree = "<group>"; };
+		C462C7241D99DB1F0036ABD1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C47D73B31D8C9E8E00D1C3E5 /* MessageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageHandler.h; sourceTree = "<group>"; };
+		C47D73B41D8C9E8E00D1C3E5 /* MessageHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageHandler.m; sourceTree = "<group>"; };
+		C47FC1AE1F212C8000828C9C /* libPods-videocall-ios-app.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-videocall-ios-app.a"; path = "Pods/../build/Debug-iphoneos/libPods-videocall-ios-app.a"; sourceTree = "<group>"; };
+		C4CE7B481DAAE84000B1B664 /* MessagesHandlerToSignaling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesHandlerToSignaling.h; sourceTree = "<group>"; };
+		C4CE7B491DAAE84000B1B664 /* MessagesHandlerToSignaling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesHandlerToSignaling.m; sourceTree = "<group>"; };
+		C4CE7B4B1DAAEEF600B1B664 /* PeerConnectionSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeerConnectionSession.h; sourceTree = "<group>"; };
+		C4CE7B4C1DAAEEF600B1B664 /* PeerConnectionSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeerConnectionSession.m; sourceTree = "<group>"; };
+		DB967D18A53265BE856A1D04 /* Pods-btxLive-ios-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-btxLive-ios-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-btxLive-ios-app/Pods-btxLive-ios-app.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C458B87B1D7E34860074BADF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C47FC1AF1F212C8000828C9C /* libPods-videocall-ios-app.a in Frameworks */,
+				C462C7251D99DB1F0036ABD1 /* AVFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		59AA941F52BAC240E07A6FA8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				765447C872157333F941F435 /* Pods-btxLive-ios-app.debug.xcconfig */,
+				DB967D18A53265BE856A1D04 /* Pods-btxLive-ios-app.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		96A03F1174E99E32005950A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C47FC1AE1F212C8000828C9C /* libPods-videocall-ios-app.a */,
+				C462C7241D99DB1F0036ABD1 /* AVFoundation.framework */,
+				A707EB3B89D4D9CF6E699B95 /* libPods-btxLive-ios-app.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C458B8751D7E34860074BADF = {
+			isa = PBXGroup;
+			children = (
+				C45D7FF81D934CDF00B70D9E /* .gitignore */,
+				C458B8801D7E34860074BADF /* videocall-ios-app */,
+				C458B87F1D7E34860074BADF /* Products */,
+				59AA941F52BAC240E07A6FA8 /* Pods */,
+				96A03F1174E99E32005950A1 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C458B87F1D7E34860074BADF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C458B87E1D7E34860074BADF /* videocall-ios-app.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C458B8801D7E34860074BADF /* videocall-ios-app */ = {
+			isa = PBXGroup;
+			children = (
+				C458B8841D7E34860074BADF /* AppDelegate.h */,
+				C458B8851D7E34860074BADF /* AppDelegate.m */,
+				C458B8871D7E34860074BADF /* ViewController.h */,
+				C458B8881D7E34860074BADF /* ViewController.m */,
+				C458B88A1D7E34860074BADF /* Main.storyboard */,
+				C458B88D1D7E34860074BADF /* Assets.xcassets */,
+				C458B88F1D7E34860074BADF /* LaunchScreen.storyboard */,
+				C458B8921D7E34860074BADF /* Info.plist */,
+				C458B8811D7E34860074BADF /* Supporting Files */,
+				C47D73B31D8C9E8E00D1C3E5 /* MessageHandler.h */,
+				C47D73B41D8C9E8E00D1C3E5 /* MessageHandler.m */,
+				C4CE7B4B1DAAEEF600B1B664 /* PeerConnectionSession.h */,
+				C4CE7B4C1DAAEEF600B1B664 /* PeerConnectionSession.m */,
+				C4CE7B481DAAE84000B1B664 /* MessagesHandlerToSignaling.h */,
+				C4CE7B491DAAE84000B1B664 /* MessagesHandlerToSignaling.m */,
+				C45EF6781D8CB67200372C8E /* CallViewController.h */,
+				C45EF6791D8CB67200372C8E /* CallViewController.m */,
+				C45EF67B1D8F53B800372C8E /* Peer.h */,
+				C45EF67C1D8F53B800372C8E /* Peer.m */,
+			);
+			name = "videocall-ios-app";
+			path = "btxLive-ios-app";
+			sourceTree = "<group>";
+		};
+		C458B8811D7E34860074BADF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C458B8821D7E34860074BADF /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C458B87D1D7E34860074BADF /* videocall-ios-app */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C458B8951D7E34860074BADF /* Build configuration list for PBXNativeTarget "videocall-ios-app" */;
+			buildPhases = (
+				770F62F38BC599F2BDD07212 /* [CP] Check Pods Manifest.lock */,
+				C458B87A1D7E34860074BADF /* Sources */,
+				C458B87B1D7E34860074BADF /* Frameworks */,
+				C458B87C1D7E34860074BADF /* Resources */,
+				ABAFE6BA67B59AB759C6C1BA /* [CP] Embed Pods Frameworks */,
+				71F91630D29DF7475D62B0B4 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "videocall-ios-app";
+			productName = "btxLive-ios-app";
+			productReference = C458B87E1D7E34860074BADF /* videocall-ios-app.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C458B8761D7E34860074BADF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = Sandcode;
+				TargetAttributes = {
+					C458B87D1D7E34860074BADF = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 569NDT2TU5;
+					};
+				};
+			};
+			buildConfigurationList = C458B8791D7E34860074BADF /* Build configuration list for PBXProject "videocall-ios-app" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C458B8751D7E34860074BADF;
+			productRefGroup = C458B87F1D7E34860074BADF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C458B87D1D7E34860074BADF /* videocall-ios-app */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C458B87C1D7E34860074BADF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C45D7FF91D934CDF00B70D9E /* .gitignore in Resources */,
+				C458B8911D7E34860074BADF /* LaunchScreen.storyboard in Resources */,
+				C458B88E1D7E34860074BADF /* Assets.xcassets in Resources */,
+				C458B88C1D7E34860074BADF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		71F91630D29DF7475D62B0B4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-btxLive-ios-app/Pods-btxLive-ios-app-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		770F62F38BC599F2BDD07212 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		ABAFE6BA67B59AB759C6C1BA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-btxLive-ios-app/Pods-btxLive-ios-app-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C458B87A1D7E34860074BADF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C45EF67A1D8CB67200372C8E /* CallViewController.m in Sources */,
+				C4CE7B4A1DAAE84100B1B664 /* MessagesHandlerToSignaling.m in Sources */,
+				C4CE7B4D1DAAEEF600B1B664 /* PeerConnectionSession.m in Sources */,
+				C458B8891D7E34860074BADF /* ViewController.m in Sources */,
+				C458B8861D7E34860074BADF /* AppDelegate.m in Sources */,
+				C458B8831D7E34860074BADF /* main.m in Sources */,
+				C47D73B51D8C9E8E00D1C3E5 /* MessageHandler.m in Sources */,
+				C45EF67D1D8F53BA00372C8E /* Peer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C458B88A1D7E34860074BADF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C458B88B1D7E34860074BADF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C458B88F1D7E34860074BADF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C458B8901D7E34860074BADF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C458B8931D7E34860074BADF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C458B8941D7E34860074BADF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C458B8961D7E34860074BADF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 765447C872157333F941F435 /* Pods-btxLive-ios-app.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 569NDT2TU5;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = "btxLive-ios-app/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.karinaromeroulloa.videocall-ios-app";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C458B8971D7E34860074BADF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DB967D18A53265BE856A1D04 /* Pods-btxLive-ios-app.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 569NDT2TU5;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = "btxLive-ios-app/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.karinaromeroulloa.videocall-ios-app";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C458B8791D7E34860074BADF /* Build configuration list for PBXProject "videocall-ios-app" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C458B8931D7E34860074BADF /* Debug */,
+				C458B8941D7E34860074BADF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C458B8951D7E34860074BADF /* Build configuration list for PBXNativeTarget "videocall-ios-app" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C458B8961D7E34860074BADF /* Debug */,
+				C458B8971D7E34860074BADF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C458B8761D7E34860074BADF /* Project object */;
+}
